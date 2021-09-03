@@ -1,0 +1,96 @@
+@import '~@angular/material/_theming';
+@import  '_variables.scss';
+@import '_mixins.scss';
+
+@font-face {
+    font-family: 'FF Mark Pro';
+    src: url(https://kenticoprod.azureedge.net/kenticoblob/App_Themes/Crestron/fonts/FF-Mark-Pro-Regular-webfont.woff?1484581327),
+         url(https://kenticoprod.azureedge.net/kenticoblob/App_Themes/Crestron/fonts/FF-Mark-Pro-Regular-webfont.woff?1484581327) format("woff");
+}
+
+@include mat-core();
+
+
+//// Define color palettes per Crestron Config Style Guide
+
+$dark-primary-text: #333333;
+$light-primary-text: #F8F8F8;
+
+
+// Crestron Blues 
+$cres-blue-palette: (
+  500: $cres-blue, // Dodger Blue
+  600: $cres-dark-blue, // Dark Cyan
+  contrast: (
+    500: $light-primary-text,
+    600: $light-primary-text,
+  )
+);
+
+// Background Colors 
+$cres-background-palette: ( 
+    400: $cres-white-smoke, // White Smoke
+    500: $cres-light-gray, // Light Grey
+    contrast: (
+        400: $dark-primary-text,
+        500: $dark-primary-text
+    )
+);
+
+// Font colors
+$cres-foreground-palette: ( 
+    400: #FFFFFF, // White
+    500: $cres-dark-gray, // Dark Slate Gray
+    contrast: (
+        400: $light-primary-text,
+        500: $light-primary-text
+  )  
+);
+
+// Info, Success, Warn and Error's 
+
+$cres-warn-palette: ( 
+    200: $cres-alert-info, // Info - Gray
+    300: $cres-alert-success, // Success - Green
+    400: $cres-alert-warn, // Warn - Yellow
+    500: $cres-arlert-error, // Error - Red
+    contrast: (
+        200: $light-primary-text,
+        300: $light-primary-text,
+        400: $light-primary-text,
+        500: $light-primary-text
+  )  
+);
+
+
+
+// Define primary, accent, and warn colors
+
+$app-primary: mat-palette($cres-blue-palette);
+$app-accent: mat-palette($cres-blue-palette);
+$app-warn: mat-palette($cres-warn-palette);
+$cres-theme: mat-light-theme($app-primary,$app-accent,$app-warn);
+
+ 
+// Define Typography
+$cres-typography: mat-typography-config(
+    $font-family: "FF Mark Pro",
+    $display-4:    mat-typography-level(112px, 112px, 400, $letter-spacing: -0.05em),
+    $display-3:    mat-typography-level(56px, 56px, 400, $letter-spacing: -0.02em),
+    $display-2:    mat-typography-level(45px, 48px, 400, $letter-spacing: -0.005em),
+    $display-1:    mat-typography-level(34px, 40px, 400),
+    $headline:     mat-typography-level(36px, 32px, 400),
+    $title:        mat-typography-level(28px, 32px, 400),
+    $subheading-2: mat-typography-level(24px, 32px, 400),
+    $subheading-1: mat-typography-level(20px, 32px, 400),
+    $body-1:       mat-typography-level(16px, 32px, 400),
+    $body-2:       mat-typography-level(16px, 32px, 400),
+    $caption:      mat-typography-level(16px, 32px, 400),
+    $button:       mat-typography-level(16px, 32px, 600),
+    $input:        mat-typography-level(14px, 1.5, 400)
+);
+
+
+// Include Theme/tyopography
+@include angular-material-theme($cres-theme);
+@include mat-core($cres-typography);
