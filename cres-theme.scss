@@ -1,6 +1,8 @@
 @import '~@angular/material/_theming';
+@import '_theme-config.scss';
 @import  '_variables.scss';
 @import '_mixins.scss';
+@import '_typography.scss';
 
 @font-face {
     font-family: 'FF Mark Pro';
@@ -11,86 +13,269 @@
 @include mat-core();
 
 
-//// Define color palettes per Crestron Config Style Guide
-
-$dark-primary-text: #333333;
-$light-primary-text: #F8F8F8;
-
-
-// Crestron Blues 
-$cres-blue-palette: (
-  500: $cres-blue, // Dodger Blue
-  600: $cres-dark-blue, // Dark Cyan
-  contrast: (
-    500: $light-primary-text,
-    600: $light-primary-text,
-  )
-);
-
-// Background Colors 
-$cres-background-palette: ( 
-    400: $cres-white-smoke, // White Smoke
-    500: $cres-light-gray, // Light Grey
-    contrast: (
-        400: $dark-primary-text,
-        500: $dark-primary-text
-    )
-);
-
-// Font colors
-$cres-foreground-palette: ( 
-    400: #FFFFFF, // White
-    500: $cres-dark-gray, // Dark Slate Gray
-    contrast: (
-        400: $light-primary-text,
-        500: $light-primary-text
-  )  
-);
-
-// Info, Success, Warn and Error's 
-
-$cres-warn-palette: ( 
-    200: $cres-alert-info, // Info - Gray
-    300: $cres-alert-success, // Success - Green
-    400: $cres-alert-warn, // Warn - Yellow
-    500: $cres-arlert-error, // Error - Red
-    contrast: (
-        200: $light-primary-text,
-        300: $light-primary-text,
-        400: $light-primary-text,
-        500: $light-primary-text
-  )  
-);
-
-
-
 // Define primary, accent, and warn colors
+//_____________________________________
 
-$app-primary: mat-palette($cres-blue-palette);
-$app-accent: mat-palette($cres-blue-palette);
+$app-primary: mat-palette(SetPalette(map-get($theme-config,"PrimaryColor")));
+$app-accent: mat-palette(SetPalette(map-get($theme-config,"AccentColor")));
 $app-warn: mat-palette($cres-warn-palette);
+
+// Define Theme
+//_____________________________________
+
 $cres-theme: mat-light-theme($app-primary,$app-accent,$app-warn);
 
  
 // Define Typography
-$cres-typography: mat-typography-config(
-    $font-family: "FF Mark Pro",
-    $display-4:    mat-typography-level(112px, 112px, 400, $letter-spacing: -0.05em),
-    $display-3:    mat-typography-level(56px, 56px, 400, $letter-spacing: -0.02em),
-    $display-2:    mat-typography-level(45px, 48px, 400, $letter-spacing: -0.005em),
-    $display-1:    mat-typography-level(34px, 40px, 400),
-    $headline:     mat-typography-level(36px, 32px, 400),
-    $title:        mat-typography-level(28px, 32px, 400),
-    $subheading-2: mat-typography-level(24px, 32px, 400),
-    $subheading-1: mat-typography-level(20px, 32px, 400),
-    $body-1:       mat-typography-level(16px, 32px, 400),
-    $body-2:       mat-typography-level(16px, 32px, 400),
-    $caption:      mat-typography-level(16px, 32px, 400),
-    $button:       mat-typography-level(16px, 32px, 600),
-    $input:        mat-typography-level(14px, 1.5, 400)
-);
+//_____________________________________
+
+$cres-typography: SetTypography(map-get($theme-config,"FontSize"));
 
 
 // Include Theme/tyopography
 @include angular-material-theme($cres-theme);
 @include mat-core($cres-typography);
+
+
+
+
+
+//_____________________________________
+//_____________________________________
+//------ Custom Component Styles  -----
+//_____________________________________ 
+//_____________________________________
+
+// Cres-Dark-Blue buttons
+
+
+.mat-button-base.secondary {
+  background-color:$cres-dark-blue;
+  color:$cres-white-smoke;
+}
+
+
+// Mat Table
+
+.mat-table {
+  border-radius:4px;
+  background:$cres-white-smoke;
+
+  .mat-header-row .mat-header-cell {
+      color:$cres-blue;
+  }
+
+  .mat-sort-header-arrow {
+      color:darken($cres-light-gray,10%);
+  }
+
+  .mat-row {
+      .mat-cell {
+          color:$cres-dark-gray;
+          border-bottom-width:1.5px;
+          border-bottom-color:white;
+      }
+  }
+
+  .mat-row.mat-cell:last-child {
+      border-bottom:1.5px;
+  }
+
+}
+
+.mat-paginator {
+  background: $cres-white-smoke;
+  &-range-actions .mat-icon-button {
+      color:lighten($cres-blue, 10%);
+  }
+}
+
+
+.select-row tbody .mat-row {
+  &:hover {
+      background-color:lighten($cres-light-gray,10%);
+  }
+
+  &:focus {
+      background-color:darken($cres-light-gray,10%);
+  }
+}
+
+
+// Mat List
+
+.mat-selection-list {
+  background-color:$cres-white-smoke;
+
+  .mat-list-option {
+      border-bottom: 1px solid white;
+      color:$cres-dark-blue;
+ }
+}
+
+// Mat Expansion Panel
+
+
+.mat-expansion-panel {
+  background-color: $cres-white-smoke;
+
+  &-header-title {
+      color: $cres-blue;
+  }
+
+  .mat-expansion-indicator:after {
+      border-color:$cres-blue;
+  }
+}
+
+
+// Mat Snackbar 
+
+.mat-snack-bar-container {
+  background: $cres-dark-blue;
+  color: $cres-white-smoke;
+
+  .mat-simple-snackbar-action {
+      color:$cres-white-smoke;
+  }
+}
+
+// Mat-form-field - Out of the Box angular material
+
+.mat-form-field {
+  .mat-input-element {
+      color: inherit;
+      caret-color: $cres-dark-blue;
+  }
+}
+
+.mat-form-field.mat-focused {
+  .mat-form-field-label {
+      color:$cres-dark-blue;
+  }
+  .mat-form-field-ripple {
+      background-color:$cres-dark-blue;
+  }
+  .mat-form-field-required-marker {
+      color: $cres-dark-blue;
+  }
+}
+
+.mat-form-field-appearance-outline {
+  & .mat-form-field-outline {
+      color:$cres-dark-blue;
+  }
+
+  &.mat-focused .mat-form-field-outline-thick {
+      color:$cres-dark-blue;
+  }
+}
+
+
+// Mat Card
+
+
+.mat-card {
+  background:$cres-white-smoke;
+
+  &-title {
+      color:$cres-blue;
+
+      & .mat-icon {
+          color:$cres-light-gray;
+      }
+  }
+}
+
+// Mat-toolbar -- Navigation Menu
+
+.example-side-nav {
+  width:500px;
+}
+
+.cres-nav-menu {
+  
+  &-mobile {
+
+      @include mq('mobile') {
+          display:flex;
+      }
+      
+      @include mq('tablet') {
+          display:none;
+      }
+
+      @include mq('desktop') {
+          display:none;
+      }
+  }
+  
+  &-logo {
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-start;
+      align-items:flex-start;
+
+      img {
+          width:200px;
+      }
+
+      &-name {
+          font-size: 16px;
+          font-weight: bold;
+          letter-spacing: 3px;
+      }
+  }
+
+  &-wrapper {
+      flex-direction:row;
+      justify-content:space-between;
+      margin:5px;
+  }
+
+  &-items {
+      display:flex;
+      flex-direction:row;
+      justify-content: center;
+      align-items:flex-end;
+
+      .mat-button {
+          color:$cres-dark-gray;
+      }
+  }
+}
+
+// Mat Tool Bar - Footer
+
+
+.cres-footer {
+  align-items: start !important;
+  box-shadow: 0px -1px 3px 0px rgb(70 70 70 / 47%);
+
+  &-wrapper {
+      display:flex;
+      flex-direction:row;
+      justify-content:space-between;
+      align-items:flex-start;
+      width:100%;
+
+  }
+
+  &-item {
+      display:flex;
+      flex-direction:column;
+      justify-content:start;
+      align-items:start;
+
+      &-content {
+          font-size: 12px;
+          font-weight:bold;
+          overflow:wrap;
+
+          a {
+              text-decoration:none;
+              color: $cres-blue;
+          }
+      }
+  }
+}

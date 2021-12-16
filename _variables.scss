@@ -1,5 +1,7 @@
 ﻿
 //// COLORS
+//_____________________________________
+//_____________________________________
 
 // Primary/Secondary
 $cres-blue: #0099FF; // Dodger Blue
@@ -8,12 +10,93 @@ $cres-dark-gray: #333333; // Dark Slate Gray
 $cres-light-gray: #D1D1D1; // Light Gray
 $cres-white-smoke: #F8F8F8; // White Smoke
 
-
 // Info, Success, Warn Errors
-
 $cres-alert-info: #82848a; // Info - Gray
 $cres-alert-success: #00a829; // Success - Green
 $cres-alert-warn: #e3d800; // Warn - Yellow
 $cres-arlert-error: #f44336; // Error - Red
 
+//// Text Colors
+//_____________________________________
 
+$dark-primary-text: $cres-dark-gray;
+$light-primary-text: $cres-white-smoke;
+
+
+
+//// Color Palettes
+//_____________________________________
+//_____________________________________
+
+// Crestron Blues 
+//_____________________________________
+$cres-blue-palette: (
+  500: $cres-blue, // Dodger Blue
+  600: $cres-dark-blue, // Dark Cyan
+  contrast: (
+    500: $light-primary-text,
+    600: $light-primary-text,
+  )
+);
+
+// Background Colors 
+//_____________________________________
+//_____________________________________
+$cres-white-palette: ( 
+    400: $cres-light-gray , 
+    500: $cres-white-smoke, 
+    contrast: (
+        400: $dark-primary-text,
+        500: $dark-primary-text
+    )
+);
+
+// Font colors
+//_____________________________________
+$cres-dark-gray-palette: ( 
+    400: #FFFFFF, // White
+    500: $cres-dark-gray, 
+    contrast: (
+        400: $light-primary-text,
+        500: $light-primary-text
+  )  
+);
+
+// Info, Success, Warn and Error's 
+//_____________________________________
+
+$cres-warn-palette: ( 
+    200: $cres-alert-info, // Info - Gray
+    300: $cres-alert-success, // Success - Green
+    400: $cres-alert-warn, // Warn - Yellow
+    500: $cres-arlert-error, // Error - Red
+    contrast: (
+        200: $light-primary-text,
+        300: $light-primary-text,
+        400: $light-primary-text,
+        500: $light-primary-text
+  )  
+);
+
+
+//// Functions
+//_____________________________________
+
+
+@function SetPalette($color){
+    @if $color == Blue {
+        @return $cres-blue-palette;
+    } 
+    @else if $color == Gray {
+        @return $cres-dark-gray-palette;
+    }
+    @else if $color == White {
+        @return $cres-white-palette;
+    }
+    @else if $color == Default {
+        @return $cres-blue-palette;
+    }
+    @else {
+        @return $cres-blue-palette;
+    }
+}

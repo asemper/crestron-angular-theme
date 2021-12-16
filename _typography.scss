@@ -1,0 +1,40 @@
+
+// Define Typography Configs
+//_____________________________________
+
+$RegularTypography: mat-typography-config(
+    $font-family: "FF Mark Pro"
+);
+
+$LargeTypography: mat-typography-config(
+    $font-family: "FF Mark Pro",
+    $display-4:    mat-typography-level(112px, 112px, 400, $letter-spacing: -0.05em),
+    $display-3:    mat-typography-level(56px, 56px, 400, $letter-spacing: -0.02em),
+    $display-2:    mat-typography-level(45px, 48px, 400, $letter-spacing: -0.005em),
+    $display-1:    mat-typography-level(34px, 40px, 400),
+    $headline:     mat-typography-level(36px, 32px, 400),
+    $title:        mat-typography-level(28px, 32px, 400),
+    $subheading-2: mat-typography-level(24px, 32px, 400),
+    $subheading-1: mat-typography-level(20px, 32px, 400),
+    $body-1:       mat-typography-level(16px, 32px, 400),
+    $body-2:       mat-typography-level(16px, 32px, 400),
+    $caption:      mat-typography-level(16px, 32px, 400),
+    $button:       mat-typography-level(16px, 32px, 600),
+    $input:        mat-typography-level(14px, 1.5, 400)
+);
+
+//// Functions
+//_____________________________________
+
+@function SetTypography($option) {
+    @if $option == Default {
+       @return  $RegularTypography;
+    } 
+    @else if $option == Large {
+        @return $LargeTypography;
+    } 
+    @else {
+        @return $RegularTypography;
+    }
+}
+
