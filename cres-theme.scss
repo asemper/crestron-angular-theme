@@ -145,29 +145,29 @@ $cres-typography: SetTypography(map-get($theme-config,"FontSize"));
 .mat-form-field {
   .mat-input-element {
       color: inherit;
-      caret-color: $cres-dark-blue;
+      caret-color: $cres-light-gray;
   }
 }
 
 .mat-form-field.mat-focused {
   .mat-form-field-label {
-      color:$cres-dark-blue;
+      color:$cres-light-gray;
   }
   .mat-form-field-ripple {
-      background-color:$cres-dark-blue;
+      color:$cres-light-gray;
   }
   .mat-form-field-required-marker {
-      color: $cres-dark-blue;
+      color:$cres-light-gray;
   }
 }
 
 .mat-form-field-appearance-outline {
   & .mat-form-field-outline {
-      color:$cres-dark-blue;
+     color:$cres-light-gray;
   }
 
   &.mat-focused .mat-form-field-outline-thick {
-      color:$cres-dark-blue;
+      color:$cres-light-gray;
   }
 }
 
@@ -188,10 +188,6 @@ $cres-typography: SetTypography(map-get($theme-config,"FontSize"));
 }
 
 // Mat-toolbar -- Navigation Menu
-
-.example-side-nav {
-  width:500px;
-}
 
 .cres-nav-menu {
   
@@ -221,7 +217,7 @@ $cres-typography: SetTypography(map-get($theme-config,"FontSize"));
       }
 
       &-name {
-          font-size: 16px;
+          font-size: 14px;
           font-weight: bold;
           letter-spacing: 3px;
       }
@@ -250,7 +246,7 @@ $cres-typography: SetTypography(map-get($theme-config,"FontSize"));
 
 .cres-footer {
   align-items: start !important;
-  box-shadow: 0px -1px 3px 0px rgb(70 70 70 / 47%);
+  box-shadow: 0px -1px 3px 0px rgba(70, 70, 70, .47);
 
   &-wrapper {
       display:flex;
@@ -270,7 +266,6 @@ $cres-typography: SetTypography(map-get($theme-config,"FontSize"));
       &-content {
           font-size: 12px;
           font-weight:bold;
-          overflow:wrap;
 
           a {
               text-decoration:none;
